@@ -1,7 +1,8 @@
 
 require 'active_record'
+
 options = {
-  adapter: 'postgresql'
+  adapter: 'postgresql',
   database: 'test_db'
 }
 
