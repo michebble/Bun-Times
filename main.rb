@@ -1,9 +1,17 @@
      
 require 'sinatra'
 require 'active_record'
+require 'httparty'
+require 'bcrypt'
+require 'geocode'
+require 'pry'
+require 'pg'
 require_relative 'db_config'
 
-require'models/location'
+
+require_relative'models/shop'
+require_relative'models/user'
+require_relative'models/burger'
 
 def index
   if params[:search].present?
