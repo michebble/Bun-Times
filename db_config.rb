@@ -1,5 +1,5 @@
 
-
+require 'active_record'
 options = {
   adapter: 'postgresql'
   database: 'test_db'
