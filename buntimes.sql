@@ -1,28 +1,29 @@
-CREATE DATABASE goodfoodhunting;
+CREATE DATABASE buntimes;
 
 CREATE TABLE burgers (
   id SERIAL4 PRIMARY KEY,
-  name VARCHAR(200),
-  image_url VARCHAR(400),
-  vegan BOOLEAN,
-  mood_tag VARCHAR(200),
-  size VARCHAR(200),
-  shop_id INTEGER FOREIGN KEY
+  name VARCHAR(200) NOT NULL,
+  image_url VARCHAR(400) NOT NULL,
+  vegan BOOLEAN NOT NULL,
+  mood_tag VARCHAR(200) NOT NULL,
+  size VARCHAR(200) NOT NULL,
+  shop_id INTEGER NOT NULL,
+  FOREIGN KEY (shop_id) REFERENCES shops (id) ON DELETE CASCADE
 );
 
 CREATE TABLE users (
   id SERIAL4 PRIMARY KEY,
-  username VARCHAR(100),
+  username VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   password_digest VARCHAR(400) NOT NULL,
-  vegan BOOLEAN
+  vegan BOOLEAN NOT NULL
 );
 
 CREATE TABLE shops(
 id SERIAL4 PRIMARY KEY,
-name VARCHAR(200),
-address VARCHAR(200),
-latitude   NUMERIC(9, 6),
-longitude  NUMERIC(9, 6),
-website_url VARCHAR(500)
+name VARCHAR(200) NOT NULL,
+address VARCHAR(200) NOT NULL,
+latitude   NUMERIC(9, 6) NOT NULL,
+longitude  NUMERIC(9, 6) NOT NULL,
+website_url VARCHAR(500) NOT NULL
 );
