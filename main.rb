@@ -1,7 +1,8 @@
      
 require 'sinatra'
-require 'geocoder'
 require 'active_record'
+require 'geocoder'
+
 require 'httparty'
 require 'bcrypt'
 
@@ -14,13 +15,6 @@ require_relative'models/shop'
 require_relative'models/user'
 require_relative'models/burger'
 
-def index
-  if params[:search].present?
-    @locations = Location.near(params[:search], 50, :order => :distance)
-  else
-    @locations = Location.all
-  end
-end
 
 
 get '/' do
@@ -28,6 +22,40 @@ get '/' do
 end
 
 
+get '/questions' do
 
+end
+
+get '/questions/:id'
+
+update '/questions' do
+
+end
+
+get '/burgers' do
+
+end
+
+
+get '/burgers/:id' do
+
+end
+
+post '/session' do
+  user = User.find_by(email: params[:email])
+
+  if user && user.authenticate(params[:password])
+    session[:user_id] = user.id # single source of truth
+    # prevents the data going stale
+    redirect to('/choice')
+  else
+    erb :login
+  end
+end
+
+delete '/session' do
+  session[:user_id] = nil
+  redirect to('/')
+end
 
 
