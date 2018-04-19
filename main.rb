@@ -1,5 +1,6 @@
      
 require 'sinatra'
+require 'sinatra/reloader'
 require 'active_record'
 require 'geocoder'
 require 'httparty'
@@ -12,6 +13,18 @@ require_relative 'models/shop'
 require_relative 'models/user'
 require_relative 'models/burger'
 
+helpers do
+
+  def logged_in?
+    current_user ? true : false
+  end
+
+  def current_user
+    User.find_by(id: session[:user_id])
+  end
+
+end
+
 
 
 get '/' do
@@ -20,14 +33,19 @@ end
 
 
 get '/questions' do
-
+ erb :question
 end
 
-get '/questions/:id' do
+get '/questions/mood' do
+  erb :mood
 end
 
-put '/questions' do
+get '/questions/weather' do
+  erb :weather
+end
 
+get '/questions/hunger' do
+  erb :hunger
 end
 
 get '/burgers' do
@@ -40,15 +58,15 @@ get '/burgers/:id' do
 end
 
 post '/session' do
-  # user = User.find_by(email: params[:email])
+  user = User.find_by(email: params[:email])
 
-  # if user && user.authenticate(params[:password])
-  #   session[:user_id] = user.id # single source of truth
-  #   # prevents the data going stale
-  #   redirect to('/choice')
-  # else
-  #   erb :login
-  # end
+  if user && user.authenticate(params[:password])
+    session[:user_id] = user.id # single source of truth
+    # prevents the data going stale
+    redirect to('/questions')
+  else
+    erb :index
+  end
 end
 
 delete '/session' do

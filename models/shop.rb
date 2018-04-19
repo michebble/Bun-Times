@@ -1,6 +1,8 @@
 require 'active_record'
 require 'geocoder'
-# extend Geocoder::Model::ActiveRecord
+
+Geocoder.configure(lookup: :opencagedata, api_key: ENV['OPENCAGE_MAP'])
+
 
 class Shop < ActiveRecord::Base
   extend Geocoder::Model::ActiveRecord
