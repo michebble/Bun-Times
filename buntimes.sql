@@ -27,3 +27,5 @@ latitude   NUMERIC(9, 6) NOT NULL,
 longitude  NUMERIC(9, 6) NOT NULL,
 website_url VARCHAR(500) NOT NULL
 );
+
+INSERT INTO shops (name, address, latitude, longitude, website_url) VALUES ('8bit - 360', '1/360 Collins St Melbourne, Australia 3000', '-37.8163491', '144.9622338', 'http://www.eat8bit.com.au/');

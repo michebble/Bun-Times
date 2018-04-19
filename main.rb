@@ -1,9 +1,10 @@
      
 require 'sinatra'
+require 'geocoder'
 require 'active_record'
 require 'httparty'
 require 'bcrypt'
-require 'geocode'
+
 require 'pry'
 require 'pg'
 require_relative 'db_config'
