@@ -1,7 +1,21 @@
+require 'active_record'
+require 'geocoder'
+
+Geocoder.configure(lookup: :opencagedata, api_key: ENV['OPENCAGE_MAP'])
+
+
 class User < ActiveRecord::Base
+  extend Geocoder::Model::ActiveRecord
   has_secure_password
   has_many :favourites
-  #gives you two methods
-  #1. password
-  #2. authenticate
+  has_many :burgers, through: :favourites 
+
+  def latitude
+    session[:latitude]
+  end
+
+  def londitude
+    session[:longitude]
+  end
+  
 end

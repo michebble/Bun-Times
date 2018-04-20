@@ -1,6 +1,6 @@
 DROP TABLE favourites;
 DROP TABLE burgers;
-DROP TABLE shop;
+DROP TABLE shops;
 DROP TABLE users;
 
 
@@ -33,8 +33,13 @@ CREATE TABLE users (
   username VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   password_digest VARCHAR(400) NOT NULL,
+  latitude   NUMERIC(9, 6) NOT NULL,
+  longitude  NUMERIC(9, 6) NOT NULL,
   vegan BOOLEAN NOT NULL
 );
+
+-- ALTER TABLE users add column latitude NUMERIC(9, 6);
+-- ALTER TABLE users add column longitude NUMERIC(9, 6);
 
 CREATE TABLE shops(
   id SERIAL4 PRIMARY KEY,

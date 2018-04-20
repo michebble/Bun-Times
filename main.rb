@@ -17,6 +17,8 @@ enable :sessions
 
 helpers do
 
+
+
   def logged_in?
     current_user ? true : false
   end
@@ -40,11 +42,12 @@ helpers do
 
 
   # b = Burger.where("patty = :patty AND price >= :average",{ patty: params[:patty], average: Burger.average('price')})
-  # 
+  # b = Burger.where("patty = :patty1 OR patty = :patty2",{ patty1: 'fish', patty2: 'vegetable'})
   # b.where("price <= :average", {average: Burger.average('price')})
 end
 
-
+@user_lat = -37.8184995
+@user_long = 144.9590752
 
 get '/' do
   erb :index
@@ -79,15 +82,17 @@ end
 
 post '/burgers' do
   session[:patty] = params[:patty]
-
-  @burger_list = Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
-
+  session[:latitude] = -37.8184995
+  session[:longitude] = 144.9590752
   binding.pry
+  @burger_list = Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
+  
   erb :burgerlist
 end
 
 
-get '/burgers/:id' do
+get '/burger/:id' do
+  @burger = Burger.find(params[:id])
 erb :burger
 end
 
