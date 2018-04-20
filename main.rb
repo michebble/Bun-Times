@@ -13,6 +13,8 @@ require_relative 'models/shop'
 require_relative 'models/user'
 require_relative 'models/burger'
 
+enable :sessions
+
 helpers do
 
   def logged_in?
@@ -23,6 +25,23 @@ helpers do
     User.find_by(id: session[:user_id])
   end
 
+
+  def login 
+    user = User.find_by(email: params[:email])
+
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id # single source of truth
+      # prevents the data going stale
+      redirect to('/questions')
+    else
+      erb :index
+    end
+  end
+
+
+  # b = Burger.where("patty = :patty AND price >= :average",{ patty: params[:patty], average: Burger.average('price')})
+  # 
+  # b.where("price <= :average", {average: Burger.average('price')})
 end
 
 
@@ -33,23 +52,37 @@ end
 
 
 get '/questions' do
- erb :question
+  session[:flavour] = nil
+  session[:patty] = nil
+  session[:size] = nil
+  #if current user is a vegan skip to ?
+  erb :question
 end
 
-get '/questions/mood' do
-  erb :mood
-end
 
-get '/questions/weather' do
+post '/questions/weather' do
+  
   erb :weather
 end
 
-get '/questions/hunger' do
+post '/questions/hunger' do
+  session[:flavour] = params[:flavour]
+  
   erb :hunger
 end
 
-get '/burgers' do
-  @burgers = Burger.all
+post '/questions/mood' do
+  session[:size] = params[:size]
+  
+  erb :mood
+end
+
+post '/burgers' do
+  session[:patty] = params[:patty]
+
+  @burger_list = Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
+
+  binding.pry
   erb :burgerlist
 end
 
@@ -69,20 +102,17 @@ post '/signup' do
   user.username = params[:username]
   user.password = params[:password]
   user.email = params[:email]
-  user.vegan = params[:vegan]
+  user.vegan = false
   user.save
+
+  login
+  
 end
 
 post '/session' do
   user = User.find_by(email: params[:email])
 
-  if user && user.authenticate(params[:password])
-    session[:user_id] = user.id # single source of truth
-    # prevents the data going stale
-    redirect to('/questions')
-  else
-    erb :index
-  end
+  login
 end
 
 delete '/session' do

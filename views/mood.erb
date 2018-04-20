@@ -1,6 +1,24 @@
 <h3>how is your mood?</h3>
-<form action="">
-  <input name="" type="submit" value="happy">
-  <input name="" type="submit" value="sad">
-  <input name="" type="submit" value="frustrated">
+<%# <form action="/burgers" method="post">
+  <input name="patty" type="submit" value="happy">
+  <input name="patty" type="submit" value="sad">
+  
+  <input name="patty" type="submit" value="frustrated">
+</form> %>
+
+<form action="/burgers" method="post">
+  <input type="hidden" name="patty" value="fish">
+  <button>fish</button>
+</form>
+<form action="/burgers" method="post">
+  <input type="hidden" name="patty" value="meat">
+  <button>meat</button>
+</form>
+<form action="/burgers" method="post">
+  <input type="hidden" name="patty" value="bird">
+  <button>bird</button>
+</form>
+<form action="/burgers" method="post">
+  <input type="hidden" name="patty" value="vegetable">
+  <button>vegetable</button>
 </form>
