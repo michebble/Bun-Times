@@ -49,12 +49,28 @@ get '/questions/hunger' do
 end
 
 get '/burgers' do
-
+  @burgers = Burger.all
+  erb :burgerlist
 end
 
 
 get '/burgers/:id' do
+erb :burger
+end
 
+get '/signup' do
+  erb :signup
+
+end
+
+
+post '/signup' do
+  user = User.new
+  user.username = params[:username]
+  user.password = params[:password]
+  user.email = params[:email]
+  user.vegan = params[:vegan]
+  user.save
 end
 
 post '/session' do

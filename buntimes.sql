@@ -1,4 +1,10 @@
-CREATE DATABASE buntimes;
+DROP TABLE favourites;
+DROP TABLE burgers;
+DROP TABLE shop;
+DROP TABLE users;
+
+
+-- CREATE DATABASE buntimes;
 
 CREATE TABLE burgers (
   id SERIAL4 PRIMARY KEY,
@@ -6,7 +12,7 @@ CREATE TABLE burgers (
   image_url VARCHAR(400) ,
   vegan BOOLEAN NOT NULL,
   patty VARCHAR(400) NOT NULL,
-  price MONEY NOT NULL,
+  price DECIMAL(4,2) NOT NULL,
   flavour VARCHAR(200) NOT NULL,
   healthy BOOLEAN NOT NULL,
   size VARCHAR(200) NOT NULL,

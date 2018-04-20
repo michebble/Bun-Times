@@ -1,4 +1,4 @@
 class Burger < ActiveRecord::Base
-  belongs to :shop
+  belongs_to :shop
   has_many :favourites
 end

@@ -7,13 +7,25 @@
 </head>
 <body>
   <header>
-    <h1>Buntimes</h1>
+    <% if logged_in? %>
+      <a href="/questions"><h1>Buntimes</h1></a>
+    <% else %>
+      <a href="/"><h1>Buntimes</h1></a>
+    <% end %>
   </header>
 
   <%= yield %>
 
   <footer>
     <a href="#">About</a>
+    <% if logged_in? %>
+      <form action="/session" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <button>logout</button>
+      </form>
+    <% else %>
+      <a href="/signup">sign up</a>
+    <% end %>
   </footer>
 
 
