@@ -1,4 +1,7 @@
 some burgers here
 <% @burger_list.each do |burger| %>
-<p><a href="/burger/<%= burger.id%>"><%= burger.name%></a></p>
+  <div>
+    <a href="/burger/<%= burger.id%>"><%= burger.name%></a>
+  </div>
+
 <% end %>

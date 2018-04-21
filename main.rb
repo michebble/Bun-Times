@@ -44,6 +44,7 @@ helpers do
   # b = Burger.where("patty = :patty AND price >= :average",{ patty: params[:patty], average: Burger.average('price')})
   # b = Burger.where("patty = :patty1 OR patty = :patty2",{ patty1: 'fish', patty2: 'vegetable'})
   # b.where("price <= :average", {average: Burger.average('price')})
+  #b.first.shop.distance_to([u.latitude, u.longitude])
 end
 
 @user_lat = -37.8184995
@@ -82,14 +83,24 @@ end
 
 post '/burgers' do
   session[:patty] = params[:patty]
+  
+  # binding.pry
+  
   session[:latitude] = -37.8184995
   session[:longitude] = 144.9590752
-  binding.pry
-  @burger_list = Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
   
+  burger_list_to_sort= Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
+
+  
+  @burger_list = burger_list_to_sort.sort_by {|burger| burger.shop.distance_to([session[:latitude], session[:longitude]])}
+  # binding.pry
   erb :burgerlist
 end
 
+get '/burger' do
+  @burger = Burger.all.sort_by {|burger| burger.shop.distance_to([session[:latitude], session[:longitude]])}.first
+  erb :burger
+end
 
 get '/burger/:id' do
   @burger = Burger.find(params[:id])
@@ -100,6 +111,8 @@ get '/signup' do
   erb :signup
 
 end
+
+
 
 
 post '/signup' do

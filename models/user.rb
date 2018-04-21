@@ -9,13 +9,5 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :favourites
   has_many :burgers, through: :favourites 
-
-  def latitude
-    session[:latitude]
-  end
-
-  def londitude
-    session[:longitude]
-  end
   
 end
