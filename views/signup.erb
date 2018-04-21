@@ -7,11 +7,12 @@
   <input name="email" type="email" > 
 
   <label for="">password</label>
-  <input name="password" type="password" > 
+  <input name="password" id="password" type="password" onkeyup='check();'> 
    
   <label for="">confirm password</label>
-  <input type="password" > 
+  <input type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' > 
 
-  <button>submit</button>
+  <button id="signup-btn" >submit</button>
 
 </form>
+
