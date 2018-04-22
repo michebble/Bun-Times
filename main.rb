@@ -1,6 +1,6 @@
      
 require 'sinatra'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'active_record'
 require 'geocoder'
 require 'httparty'
@@ -104,6 +104,7 @@ end
 
 get '/burger/:id' do
   @map_url = "https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API']}&callback=myMap"
+  
   @burger = Burger.find(params[:id])
   @image_url
   case @burger.patty

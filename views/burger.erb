@@ -10,8 +10,8 @@
 function myMap() {
 var mapOptions = {
     center: new google.maps.LatLng(<%= @burger.shop.latitude %>, <%= @burger.shop.longitude %>),
-    zoom: 20,
-    mapTypeId: google.maps.MapTypeId.HYBRID
+    zoom: 15,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
 }
 var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 }
