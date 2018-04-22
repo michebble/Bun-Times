@@ -11,6 +11,6 @@ require_relative 'models/user'
 require_relative 'models/burger'
 require_relative 'models/favourite'
 
-binding.pry
+# binding.pry
 
 puts 'ready to debug'
