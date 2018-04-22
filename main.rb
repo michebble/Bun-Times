@@ -103,7 +103,19 @@ get '/burger' do
 end
 
 get '/burger/:id' do
+  @map_url = "https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API']}&callback=myMap"
   @burger = Burger.find(params[:id])
+  @image_url
+  case @burger.patty
+  when "bird"
+    @image_url = "/images/b_burger.png"
+  when "fish"
+    @image_url = "/images/f_burger.png"
+  when "vegetable"
+    @image_url = "/images/v_burger.png"
+  else
+    @image_url = "/images/m_burger.jpeg"
+  end
 erb :burger
 end
 

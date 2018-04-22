@@ -1,18 +1,22 @@
-<form action="/signup" method="post">
-
-  <label for="">Username</label>
-  <input name="username" type="text" > 
-
-  <label for="">Email</label>
-  <input name="email" type="email" > 
-
-  <label for="">password</label>
-  <input name="password" id="password" type="password" onkeyup='check();'> 
-   
-  <label for="">confirm password</label>
-  <input type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' > 
-
-  <button id="signup-btn" >submit</button>
-
+<form class="signup" action="/signup" method="post">
+  <div>
+    <label for="">Username</label>
+    <input name="username" type="text" > 
+  </div>
+  <div>
+    <label for="">Email</label>
+    <input name="email" type="email" > 
+  </div>
+  <div>
+    <label for="">password</label>
+    <input name="password" id="password" type="password" onkeyup='check();'> 
+  </div> 
+  <div> 
+    <label for="">confirm password</label>
+    <input type="password" name="confirm_password" id="confirm_password"  onkeyup='check();' > 
+  </div>
+  <div>
+    <button id="signup-btn" >submit</button>
+  </div>
 </form>
 

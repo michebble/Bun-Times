@@ -36,8 +36,6 @@ CREATE TABLE users (
   username VARCHAR(100) NOT NULL,
   email VARCHAR(100) NOT NULL,
   password_digest VARCHAR(400) NOT NULL,
-  latitude   NUMERIC(9, 6) NOT NULL,
-  longitude  NUMERIC(9, 6) NOT NULL,
   vegan BOOLEAN NOT NULL
 );
 

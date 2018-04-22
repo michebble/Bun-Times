@@ -1,7 +1,6 @@
-some burgers here
+<h3>Burgers in your area</h3>
 <% @burger_list.each do |burger| %>
   <div>
     <a href="/burger/<%= burger.id%>"><%= burger.name%></a>
   </div>
-
 <% end %>

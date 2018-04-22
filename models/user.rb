@@ -1,11 +1,8 @@
-require 'active_record'
-require 'geocoder'
-
-Geocoder.configure(lookup: :opencagedata, api_key: ENV['OPENCAGE_MAP'])
-
 
 class User < ActiveRecord::Base
-  extend Geocoder::Model::ActiveRecord
+  validates :username, length: { minimum: 4 }
+  validates :password, length: { minimum: 8 }
+  validates :username, :email, uniqueness: true
   has_secure_password
   has_many :favourites
   has_many :burgers, through: :favourites 

@@ -5,3 +5,10 @@
 body {
   background-color: lightcoral;
 }
+
+footer {
+  display: flex;
+  flex-direction: row;
+  align-content: space-around;
+
+}

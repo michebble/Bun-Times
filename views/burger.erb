@@ -1,3 +1,19 @@
-the burger of your dreams
-<img src="/public/images/" alt="">
-<%= @burger.name%>
+<div>
+<img src="<%= @image_url %>" alt="<%= @burger.patty %> burger">
+<h3><%= @burger.name%></h3>
+<div>Available at: <a href="<%= @burger.shop.website_url%>"><%= @burger.shop.name%></a> </div> 
+<div id="map" style="width:400px;height:400px;background:yellow">
+</div>
+
+
+<script>
+function myMap() {
+var mapOptions = {
+    center: new google.maps.LatLng(<%= @burger.shop.latitude %>, <%= @burger.shop.longitude %>),
+    zoom: 20,
+    mapTypeId: google.maps.MapTypeId.HYBRID
+}
+var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+}
+</script>
+<script src="<%=@map_url%>"></script>

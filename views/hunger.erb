@@ -1,7 +1,14 @@
 <h3>Hungry?</h3>
 
 <form action="/questions/mood" method="post">
-  <input name="size" type="submit" value="large">
-  <input name="size" type="submit" value="medium">
-  <input name="size" type="submit" value="small">
+  <input name="size" type="hidden" value="large">
+  <button>Fill Me Up</button>
+</form>
+<form action="/questions/mood" method="post">
+  <input name="size" type="hidden" value="medium">
+  <button>Yeah!</button>
+</form>
+<form action="/questions/mood" method="post">
+  <input name="size" type="hidden" value="small">
+  <button>Just Peckish</button>
 </form>
