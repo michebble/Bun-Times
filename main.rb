@@ -1,6 +1,6 @@
      
 require 'sinatra'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'active_record'
 require 'geocoder'
 require 'httparty'
@@ -59,6 +59,8 @@ get '/questions' do
   session[:flavour] = nil
   session[:patty] = nil
   session[:size] = nil
+  session[:latitude] = -37.8184995
+  session[:longitude] = 144.9590752
   #if current user is a vegan skip to ?
   erb :question
 end
@@ -86,8 +88,7 @@ post '/burgers' do
   
   # binding.pry
   
-  session[:latitude] = -37.8184995
-  session[:longitude] = 144.9590752
+  
   
   burger_list_to_sort= Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
 
@@ -115,7 +116,7 @@ get '/burger/:id' do
   when "vegetable"
     @image_url = "/images/v_burger.png"
   else
-    @image_url = "/images/m_burger.jpeg"
+    @image_url = "/images/m_burger.png"
   end
 erb :burger
 end

@@ -1,6 +1,6 @@
 <h3>Burgers in your area</h3>
 <% @burger_list.each do |burger| %>
   <div>
-    <a href="/burger/<%= burger.id%>"><%= burger.name%></a>
+    <a href="/burger/<%= burger.id%>"><%= burger.name%></a> <div><%= burger.shop.distance_to([session[:latitude], session[:longitude]]).round(3) %>km</div>
   </div>
 <% end %>

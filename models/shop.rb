@@ -1,7 +1,7 @@
 require 'active_record'
 require 'geocoder'
 
-Geocoder.configure(lookup: :opencagedata, api_key: ENV['OPENCAGE_MAP'])
+Geocoder.configure(lookup: :opencagedata, api_key: ENV['OPENCAGE_MAP'] :units => :km)
 
 
 class Shop < ActiveRecord::Base
