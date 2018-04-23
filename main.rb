@@ -1,6 +1,6 @@
      
 require 'sinatra'
-
+require 'sinatra/reloader'
 require 'active_record'
 require 'geocoder'
 require 'httparty'
@@ -103,7 +103,7 @@ get '/burger' do
 end
 
 get '/burger/:id' do
-  @map_url = "https://maps.googleapis.com/maps/api/js?key=#{ENV['MAP_API']}&callback=myMap"
+  @map_url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBYLkE3ri--TYFJCalFaHKoLRRyZ54TkR8&callback=myMap"
   
   @burger = Burger.find(params[:id])
   @image_url
@@ -147,8 +147,8 @@ post '/session' do
 end
 
 delete '/session' do
-  # session[:user_id] = nil
-  # redirect to('/')
+  session[:user_id] = nil
+  redirect to('/')
 end
 
 

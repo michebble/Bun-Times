@@ -4,6 +4,16 @@
 
 body {
   background-color: lightcoral;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 100%;
+}
+
+header {
+  display: flex;  
+  flex-direction: row;
+  align-content: space-between;
 }
 
 footer {

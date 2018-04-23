@@ -7,3 +7,19 @@
   <input name="" type="submit" value="Burger me">
 </form>
 
+<script>
+lat = document.querySelector('.latitude');
+long = document.querySelector('.longitude');
+
+var success = function(position) {
+  
+    lat.value = position.coords.latitude;
+    long.value = position.coords.longitude;
+  
+}
+
+var error = function(err) {
+  console.warn(`ERROR(${err.code}): ${err.message}`);
+}
+navigator.geolocation.getCurrentPosition(success,error, {enableHighAccuracy : false});
+</script>
