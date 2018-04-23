@@ -68,16 +68,35 @@ h3 {
 }
 
 .shop-link {
-  font-size: 2rem;
+  font-size: 3rem;
   padding: 1.5em;
 }
 
 .burger {
   display: flex;
   flex-direction: row;
-  align-content: space-between;
+  justify-content: space-between;
+  border: 5px solid black;
+  margin: 1.5rem;
+  font-size: 4.5rem;
+  padding: 1.5rem;
 }
 
+main form, main form input, main form button {
+  font-size: 5rem;
+}
+main form {
+  display: flex;
+  
+}
+
+main form input, main form button {
+  padding: 4.5rem;
+  border: 5px solid black;
+  width: 100%;
+  margin: 3rem;
+  background: violet;
+}
 
 .map-holder {
  padding: 1.5rem 0;
@@ -108,4 +127,9 @@ footer form button{
   font-family: 'Rubik Mono One', sans-serif; 
   color: plum;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
 }

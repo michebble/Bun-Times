@@ -63,7 +63,11 @@ end
 @user_long = 144.9590752
 
 get '/' do
+  if logged_in?
+    redirect to('questions')
+  end
   erb :index
+  
 end
 
 
@@ -113,10 +117,8 @@ end
 
 get '/burger/:id' do
   @map_url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBYLkE3ri--TYFJCalFaHKoLRRyZ54TkR8&callback=myMap"
-  
   @burger = Burger.find(params[:id])
-  @image_url = burger_image
-  
+  @image_url = burger_image 
 erb :burger
 end
 
@@ -124,9 +126,6 @@ get '/signup' do
   erb :signup
 
 end
-
-
-
 
 post '/signup' do
   user = User.new
@@ -142,7 +141,6 @@ end
 
 post '/session' do
   user = User.find_by(email: params[:email])
-
   login
 end
 

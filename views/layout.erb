@@ -8,15 +8,11 @@
 </head>
 <body>
   <header>
-    <% if logged_in? %>
-      <a href="/questions"><h1>Buntimes</h1></a>
-    <% else %>
       <a href="/"><h1>Buntimes</h1></a>
-    <% end %>
   </header>
-
+  <main>
   <%= yield %>
-
+  </main>
   
   <footer>
     <div>
