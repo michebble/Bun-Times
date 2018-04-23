@@ -1,21 +1,13 @@
-<div>
-<img src="<%= @image_url %>" alt="<%= @burger.patty %> burger">
+<div class="burger-info">
 <h3><%= @burger.name%></h3>
-<div>Available at: <a href="<%= @burger.shop.website_url%>"><%= @burger.shop.name%></a> </div> 
-<div id="map" style="width:400px;height:400px;background:yellow"></div>
+<img src="<%= @image_url %>" alt="<%= @burger.patty %> burger">
+
+<div class="shop-link">Available at: <a href="<%= @burger.shop.website_url%>"><%= @burger.shop.name%></a> </div> 
+<div id="map" style="width:100%;height:400px;background:yellow"></div>
 </div>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYLkE3ri--TYFJCalFaHKoLRRyZ54TkR8"> </script>
 <script>
-// function myMap() {
-//   var mapOptions = {
-//       center: new google.maps.LatLng(<%= @burger.shop.latitude %>, <%= @burger.shop.longitude %>),
-//       zoom: 15,
-//       mapTypeId: google.maps.MapTypeId.ROADMAP
-//   }
-//   var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-
-// }
 function initMap() {
         var location = {lat: <%= @burger.shop.latitude %>, lng: <%= @burger.shop.longitude %>};
         var map = new google.maps.Map(document.getElementById('map'), {
