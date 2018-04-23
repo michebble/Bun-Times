@@ -41,6 +41,18 @@ helpers do
   end
 
 
+  def burger_image 
+    case @burger.patty
+    when "bird"
+       "/images/b_burger.png"
+    when "fish"
+       "/images/f_burger.png"
+    when "vegetable"
+       "/images/v_burger.png"
+    else
+       "/images/m_burger.png"
+    end
+  end
   # b = Burger.where("patty = :patty AND price >= :average",{ patty: params[:patty], average: Burger.average('price')})
   # b = Burger.where("patty = :patty1 OR patty = :patty2",{ patty1: 'fish', patty2: 'vegetable'})
   # b.where("price <= :average", {average: Burger.average('price')})
@@ -86,13 +98,8 @@ end
 post '/burgers' do
   session[:patty] = params[:patty]
   
-  # binding.pry
-  
-  
-  
   burger_list_to_sort= Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
 
-  
   @burger_list = burger_list_to_sort.sort_by {|burger| burger.shop.distance_to([session[:latitude], session[:longitude]])}
   # binding.pry
   erb :burgerlist
@@ -100,6 +107,7 @@ end
 
 get '/burger' do
   @burger = Burger.all.sort_by {|burger| burger.shop.distance_to([session[:latitude], session[:longitude]])}.first
+  @image_url = burger_image
   erb :burger
 end
 
@@ -107,17 +115,8 @@ get '/burger/:id' do
   @map_url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBYLkE3ri--TYFJCalFaHKoLRRyZ54TkR8&callback=myMap"
   
   @burger = Burger.find(params[:id])
-  @image_url
-  case @burger.patty
-  when "bird"
-    @image_url = "/images/b_burger.png"
-  when "fish"
-    @image_url = "/images/f_burger.png"
-  when "vegetable"
-    @image_url = "/images/v_burger.png"
-  else
-    @image_url = "/images/m_burger.png"
-  end
+  @image_url = burger_image
+  
 erb :burger
 end
 
