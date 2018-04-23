@@ -1,19 +1,19 @@
 # Bun Times
-## A new way to fix your craving
+### A new way to fix your craving
 Sometimes a craving hits you, a craving for a burger. You may have your favourite burger joint, but what if it's on the otherside of town? Welcome to 'Bun Times' the burger locator. Sign up for a free account and then when that craving hits you'll be able to find a burger and fast. As an added feature, you can answer some quick questions and the app will suggest burgers that fit your needs. Once the app has found you a burger, it displays the where the burger can be found with a map and a link to the store's website.
 [Bun Times](https://buntimes.herokuapp.com/)
 
 ### Technologies Used
-* Postgres
+* *Postgres* - 
 This implementation of SQL was used to manage the app's database. It's relational structure easily allows tables to be connected for complex query requests.
 
-* ActiveRecord
+* *ActiveRecord* - 
 This Ruby gem provides ORM (Object-Relational Mapping) functionality to the Postgres Database. It allows the access of tables in the database as if they were Ruby objects. By following convention over configuration, complex database queries become relatively straight forward.
 
-* [Ruby Geocoder](https://github.com/alexreisner/geocoder)
+* [*Ruby Geocoder*](https://github.com/alexreisner/geocoder) - 
 This Ruby gem was used to find the distance between the user and the burger shops based on thier co-ordinates. These valuesc are then sorted to find the closest burger to the user. Later in development, this gem will be used to convert the user's IP address into co-ordinates as a backup to browser geolocation no being accessable.
 
-* [Google Maps API](https://developers.google.com/maps/)
+* [*Google Maps API*](https://developers.google.com/maps/) - 
 Using Google's API allowed for maps to be displayed on the page for each burger. This shows the user the location of the shop where the burger can be purchased.
 
 
