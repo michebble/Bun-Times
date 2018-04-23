@@ -17,16 +17,21 @@
 
   <%= yield %>
 
+  
   <footer>
-    <a href="#">About</a>
-    <% if logged_in? %>
-      <form action="/session" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <button>logout</button>
-      </form>
-    <% else %>
-      <a href="/signup">sign up</a>
-    <% end %>
+    <div>
+      <a href="#">About</a>
+    </div>
+    <div>
+      <% if logged_in? %>
+        <form action="/session" method="post">
+          <input type="hidden" name="_method" value="delete">
+          <button>logout</button>
+        </form>
+      <% else %>
+        <a href="/signup">sign up</a>
+      <% end %>
+    </div>
   </footer>
 
   <script src="/javascripts/application.js"></script>
