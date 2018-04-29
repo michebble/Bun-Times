@@ -4,7 +4,7 @@
 
 body {
   /* background-color: lightcoral; */
-  background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);
+  background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%);
   background-size: contain;
   height: 100%;
   display: flex;
@@ -13,8 +13,6 @@ body {
   width: 90%;
   margin: 0 auto;
   font-family: 'Roboto', sans-serif;
-
-
 }
 
 header {
@@ -38,10 +36,6 @@ header a{
   font-size: 4rem;
   color: plum;
   text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
-}
-
-a h1 {
- 
 }
 
 h3 {
@@ -85,9 +79,9 @@ h3 {
 main form, main form input, main form button {
   font-size: 5rem;
 }
+
 main form {
-  display: flex;
-  
+  display: flex; 
 }
 
 main form input, main form button {
@@ -132,4 +126,11 @@ footer form button{
   border: none;
   cursor:pointer;
   overflow: hidden;
+}
+
+
+@media only screen and (min-width : 30em) {
+}
+
+@media only screen and (min-width : 56.25em) {
 }

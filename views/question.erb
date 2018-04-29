@@ -1,36 +1,61 @@
 <form action="/burger" method=get>
-  <input class="latitude2" type="hidden" name="latitude" value=""><input class="longitude2" type="hidden" name="longitude" value="">
+  <input class="latitude" type="hidden" name="latitude" value="">
+  <input class="longitude" type="hidden" name="longitude" value="">
+  <input class="ip" type="hidden" name="ip" value="">
   <input name="" type="submit" value="Burger me">
 </form>
 <form action="/questions/weather" method="post">
-  <input class="latitude" type="hidden" name="latitude" value=""><input class="longitude" type="hidden" name="longitude" value="">
+  <input class="latitude2" type="hidden" name="latitude" value="">
+  <input class="longitude2" type="hidden" name="longitude" value="">
+  <input class="ip2" type="hidden" name="ip" value="">
   <input name="" type="submit" value="Help Me Choose">
 </form>
 
 
+<script>
+  lat = document.querySelector('.latitude');
+  lat2 = document.querySelector('.latitude2');
+  long = document.querySelector('.longitude');
+  long2 = document.querySelector('.longitude2');
+
+  var getCoords = function( position ) {
+    lat.value = position.coords.latitude;
+    long.value = position.coords.longitude;
+    lat2.value = position.coords.latitude;
+    long2.value = position.coords.longitude;
+  }
+
+  var error = function() {
+    console.log('unable to get geolocation')
+  }
+
+  var options = { timeout: 5000 };
+
+  navigator.geolocation.getCurrentPosition( getCoords, error, options );
+</script>
 
 
+<script>
+  var userip;
+</script>
 
+<script type="text/javascript" src="https://l2.io/ip.js?var=userip"></script>
 
-<%# <script>
-lat = document.querySelector('.latitude');
-lat2 = document.querySelector('.latitude2');
-long = document.querySelector('.longitude');
-long2 = document.querySelector('.longitude2');
+<script >
+  var ipclass = document.querySelectorAll('ip');
+  ipclass.forEach(function(inputValue){
+    inputValue.value = userip;
+  });
+</script>
 
+<%# <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script>
+  var $ip = $('.ip');
 
-var get_coords = function(position) {
-  lat.value = position.coords.latitude;
-  long.value = position.coords.longitude;
-  lat2.value = position.coords.latitude;
-  long2.value = position.coords.longitude;
-}
+  $.ajax({
+    url: "http://omdbapi.com/?apikey=2f6435d9&page=23&t=blade"
+  }).done(function(resp){
+    console.log(resp.Title);
+  })
 
-var get_backup = function {
-  lat.value =  -37.8184995;
-  long.value = 144.9590752;
-  lat2.value = -37.8184995;
-  long2.value = 144.9590752;
-}
-navigator.geolocation.getCurrentPosition(get_coords, get_backup, { timeout: 5000});
 </script> %>

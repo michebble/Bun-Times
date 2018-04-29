@@ -7,8 +7,8 @@ require 'httparty'
 require 'bcrypt'
 require 'pry'
 require 'pg'
-require_relative 'db_config'
 
+require_relative 'db_config'
 require_relative 'models/shop'
 require_relative 'models/user'
 require_relative 'models/burger'
@@ -16,8 +16,6 @@ require_relative 'models/burger'
 enable :sessions
 
 helpers do
-
-
 
   def logged_in?
     current_user ? true : false
@@ -27,19 +25,16 @@ helpers do
     User.find_by(id: session[:user_id])
   end
 
-
   def login 
     user = User.find_by(email: params[:email])
 
     if user && user.authenticate(params[:password])
-      session[:user_id] = user.id # single source of truth
-      # prevents the data going stale
+      session[:user_id] = user.id 
       redirect to('/questions')
     else
       erb :index
     end
   end
-
 
   def burger_image 
     case @burger.patty
@@ -59,19 +54,19 @@ helpers do
   #b.first.shop.distance_to([u.latitude, u.longitude])
 end
 
-@user_lat = -37.8184995
-@user_long = 144.9590752
-
 get '/' do
+
   if logged_in?
     redirect to('questions')
   end
+
   erb :index
   
 end
 
 
 get '/questions' do
+
   session[:flavour] = nil
   session[:patty] = nil
   session[:size] = nil
@@ -83,51 +78,64 @@ end
 
 
 post '/questions/weather' do
-  
+  session[:latitude] = params[:latitude]
+  session[:longitude] = params[:longitude]
   erb :weather
 end
 
 post '/questions/hunger' do
+
   session[:flavour] = params[:flavour]
-  
+
   erb :hunger
 end
 
 post '/questions/mood' do
+
   session[:size] = params[:size]
   
   erb :mood
 end
 
 post '/burgers' do
+
   session[:patty] = params[:patty]
   
   burger_list_to_sort= Burger.where("patty = :patty AND size = :size AND flavour = :flavour",{ patty: session[:patty], size: session[:size], flavour: session[:flavour] })
 
   @burger_list = burger_list_to_sort.sort_by {|burger| burger.shop.distance_to([session[:latitude], session[:longitude]])}
-  # binding.pry
+
   erb :burgerlist
 end
 
 get '/burger' do
+  session[:latitude] = params[:latitude]
+  session[:longitude] = params[:longitude]
   @burger = Burger.all.sort_by {|burger| burger.shop.distance_to([session[:latitude], session[:longitude]])}.first
+
   @image_url = burger_image
+
   erb :burger
 end
 
 get '/burger/:id' do
+
   @map_url = "https://maps.googleapis.com/maps/api/js?key=AIzaSyBYLkE3ri--TYFJCalFaHKoLRRyZ54TkR8&callback=myMap"
+
   @burger = Burger.find(params[:id])
+
   @image_url = burger_image 
-erb :burger
+
+  erb :burger
 end
 
 get '/signup' do
-  erb :signup
 
+  erb :signup
 end
 
 post '/signup' do
+
   user = User.new
   user.username = params[:username]
   user.password = params[:password]
@@ -140,12 +148,16 @@ post '/signup' do
 end
 
 post '/session' do
+
   user = User.find_by(email: params[:email])
+
   login
 end
 
 delete '/session' do
+
   session[:user_id] = nil
+
   redirect to('/')
 end
 
