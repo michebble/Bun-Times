@@ -105,6 +105,9 @@ post '/burgers' do
 
   @burger_list = burger_list_to_sort.sort_by {|burger| burger.shop.distance_to([session[:latitude], session[:longitude]])}
 
+
+  # Burger.alfl_ny_distance
+
   erb :burgerlist
 end
 
