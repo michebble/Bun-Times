@@ -78,8 +78,16 @@ end
 
 
 post '/questions/weather' do
-  session[:latitude] = params[:latitude]
-  session[:longitude] = params[:longitude]
+  if params[:latitude]
+   session[:latitude] = params[:latitude]
+  else
+    session[:latitude] = -37.8185768
+  end
+  if
+    session[:longitude] = params[:longitude]
+  else
+    session[:longitude] = 144.9590125
+  end
   erb :weather
 end
 

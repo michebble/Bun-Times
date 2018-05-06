@@ -4,7 +4,7 @@ class Burger < ActiveRecord::Base
   has_many :users, through: :favourites
 
 
-
+  
   # PATTY = {'bird', 'fish' ]
 
   # def self.all_/by_sdfsdf 
